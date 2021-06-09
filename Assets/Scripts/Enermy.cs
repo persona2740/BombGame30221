@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Enermy : MonoBehaviour
 {
+    public AudioSource enermyAudio; 
+    public GameObject explosionEffect;
     public Transform target;
     private Rigidbody rig;
     private bool scored = false;
     public float speed = 20f;
     private void Start()
     {
+        enermyAudio = GetComponent<AudioSource>();
         rig = GetComponent<Rigidbody>();
         target = GameObject.FindWithTag("Player").transform;
     }
@@ -26,11 +29,12 @@ public class Enermy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Bullet" && scored == false)
-        {
+       
+            enermyAudio.Play(); 
+            Instantiate(explosionEffect, transform.position, transform.rotation); 
             scored = true;
             GameManager.instance.AddScore(1);
             transform.position = new Vector3(Random.Range(-30, 30), 0.5f, Random.Range(-30, 30));
-            scored = false;
-        }
+            scored = false;  
     }
 }
