@@ -5,8 +5,8 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
     public Transform target;
-    public float dist = 5.0f;
-    public float height = 4.0f;
+    public float dist = 50.0f;
+    public float height = 20.0f;
 
     private void LateUpdate()
     {
